@@ -17,7 +17,7 @@ public class AuthCodeRequestConverterTest {
     private final AuthCodeRequestConverter authCodeRequestConverter = new AuthCodeRequestConverter();
 
     @Test
-    @DisplayName("Authorization Code 생성 요청 변환 동작 성공 테스트")
+    @DisplayName("Authorization Code 생성 요청 변환 동작 성공 테스트 케이스")
     void convertTest() {
         // Given: Mockup Setting
         AuthCodeRequestConvertTestUtil.setHttpRequestServletMockToSuccessCase(this.request);
@@ -37,7 +37,7 @@ public class AuthCodeRequestConverterTest {
     }
 
     @Test
-    @DisplayName("Authorization Code 생성 요청 변환 동작 실패 테스트 - responseType null 에러")
+    @DisplayName("Authorization Code 생성 요청 변환 동작 실패 테스트 케이스 - responseType null 에러 케이스")
     void convertFailureCase1Test() {
         // Given: Mockup Setting
         AuthCodeRequestConvertTestUtil.setHttpRequestServletMockToFailureCase1(this.request);
@@ -48,7 +48,7 @@ public class AuthCodeRequestConverterTest {
     }
 
     @Test
-    @DisplayName("Authorization Code 생성 요청 변환 동작 실패 테스트 - responseType blank 에러")
+    @DisplayName("Authorization Code 생성 요청 변환 동작 실패 테스트 케이스 - responseType blank 에러 케이스")
     void convertFailureCase2Test() {
         // Given: Mockup Setting
         AuthCodeRequestConvertTestUtil.setHttpRequestServletMockToFailureCase2(this.request);
@@ -59,7 +59,7 @@ public class AuthCodeRequestConverterTest {
     }
 
     @Test
-    @DisplayName("Authorization Code 생성 요청 변환 동작 실패 테스트 - responseType 불일치 에러")
+    @DisplayName("Authorization Code 생성 요청 변환 동작 실패 테스트 케이스 - responseType 불일치 에러 케이스")
     void convertFailureCase3Test() {
         // Given: Mockup Setting
         AuthCodeRequestConvertTestUtil.setHttpRequestServletMockToFailureCase3(this.request);
@@ -70,7 +70,7 @@ public class AuthCodeRequestConverterTest {
     }
 
     @Test
-    @DisplayName("Authorization Code 생성 요청 변환 동작 실패 테스트 - clientId null 에러")
+    @DisplayName("Authorization Code 생성 요청 변환 동작 실패 테스트 케이스 - clientId null 에러 케이스")
     void convertFailureCase4Test() {
         // Given: Mockup Setting
         AuthCodeRequestConvertTestUtil.setHttpRequestServletMockToFailureCase4(this.request);
@@ -81,7 +81,7 @@ public class AuthCodeRequestConverterTest {
     }
 
     @Test
-    @DisplayName("Authorization Code 생성 요청 변환 동작 실패 테스트 - clientId blank 에러")
+    @DisplayName("Authorization Code 생성 요청 변환 동작 실패 테스트 케이스 - clientId blank 에러 케이스")
     void convertFailureCase5Test() {
         // Given: Mockup Setting
         AuthCodeRequestConvertTestUtil.setHttpRequestServletMockToFailureCase5(this.request);
@@ -92,7 +92,7 @@ public class AuthCodeRequestConverterTest {
     }
 
     @Test
-    @DisplayName("Authorization Code 생성 요청 변환 동작 실패 테스트 - redirectURI null 에러")
+    @DisplayName("Authorization Code 생성 요청 변환 동작 실패 테스트 케이스 - redirectURI null 에러 케이스")
     void convertFailureCase6Test() {
         // Given: Mockup Setting
         AuthCodeRequestConvertTestUtil.setHttpRequestServletMockToFailureCase6(this.request);
@@ -103,7 +103,7 @@ public class AuthCodeRequestConverterTest {
     }
 
     @Test
-    @DisplayName("Authoization Code 생성 요청 변환 동작 실패 테스트 - redirectURI blank 에러")
+    @DisplayName("Authoization Code 생성 요청 변환 동작 실패 테스트 케이스 - redirectURI blank 에러 케이스")
     void convertFailureCase7Test() {
         // Given: Mockup Setting
         AuthCodeRequestConvertTestUtil.setHttpRequestServletMockToFailureCase7(this.request);

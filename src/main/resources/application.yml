@@ -1,0 +1,51 @@
+
+spring:
+  # Spring Application Common Configurations
+  application:
+    name: NC99-Auth-Server
+  profiles:
+    active: prod
+  # Spring HTTP Response Configurations
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1025MB
+  cloud:
+    loadbalancer:
+      cache:
+        enabled: false
+  # Spring MySQL Common Configurations
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: 1000
+        hibernate.dialect: org.hibernate.dialect.MySQLDialect
+        function_contributor: com.newcentury99.p010_nc99_auth_server.commons.base.MySQLDBFunction
+        jdbc:
+          batch_size: 100
+        order_inserts: true
+        order_updates: true
+    generate-ddl: true
+    database: mysql
+    hibernate:
+      ddl-auto: update
+  # Spring Messages Configurations
+  messages:
+    encoding: UTF-8
+    fallback-to-system-locale: false
+    use-code-as-default-message: true
+
+# Tomcat HTTP Response Configurations
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force-response: true
+
+# Spring Eureka(Service Discovery) Configurations
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+  client:
+    fetch-registry: true
+    register-with-eureka: true

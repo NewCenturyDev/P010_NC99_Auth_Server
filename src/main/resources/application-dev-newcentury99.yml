@@ -1,0 +1,25 @@
+# Environment Variables - For Production Server Distribution
+
+# Client Network Setting (hostname)
+server:
+  port: 3000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:5000/eureka/
+
+spring:
+  # Database Config
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://nc99-test-database:3306/nc99_auth
+    username: nc99_auth
+    password: password
+  # Storage COnfig
+  web:
+    resources:
+      static-locations: ["file:///E:/#Storage/P010_NC99_Auth_Server/"]
+  mvc:
+    static-path-pattern: "/storage/**"
+storage:
+  rootPath: "E:\\#Storage\\P010_NC99_Auth_Server"
