@@ -29,7 +29,7 @@ import java.util.*;
 public class CommonUserProfile implements UserDetails, OAuth2User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "user_id")
+    @Column(name = "user_id", columnDefinition = "varchar")
     private UUID id;
 
     /* User Information (Essential) */
