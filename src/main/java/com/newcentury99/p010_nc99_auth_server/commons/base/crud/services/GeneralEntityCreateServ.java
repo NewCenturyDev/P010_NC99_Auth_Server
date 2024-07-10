@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface GeneralEntityCreateServ<T, DTO extends CreateGeneralReqDTO> {
     T create(DTO reqDTO);
-    List<T> creates(List<DTO> reqDTO);
+    List<T> creates(List<DTO> reqDTOs);
     void createEntityStorage();
 }

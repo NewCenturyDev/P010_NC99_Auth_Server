@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.f4b6a3.uuid.UuidCreator;
+import com.newcentury99.p010_nc99_auth_server.commons.base.crud.entity.GeneralEntity;
+import com.newcentury99.p010_nc99_auth_server.domains.users.profiles.dto.request.CreateCommonUserProfileReqDTO;
 import com.newcentury99.p010_nc99_auth_server.domains.users.profiles.entity.converters.PermissionScopeConverter;
 import com.newcentury99.p010_nc99_auth_server.library_temp.security.PermissionScope;
 import jakarta.persistence.*;
@@ -19,6 +21,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 @Entity
@@ -26,7 +29,7 @@ import java.util.*;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommonUserProfile implements UserDetails, OAuth2User {
+public class CommonUserProfile implements GeneralEntity<CommonUserProfile, CreateCommonUserProfileReqDTO>, UserDetails, OAuth2User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "user_id", columnDefinition = "varchar")
@@ -58,7 +61,7 @@ public class CommonUserProfile implements UserDetails, OAuth2User {
 
     // 국적
     @Column
-    private Locale country;
+    private String country;
 
     // 생년월일
     @Column
@@ -157,10 +160,29 @@ public class CommonUserProfile implements UserDetails, OAuth2User {
     public boolean isEnabled() {
         return this.active;
     }
-    
+
     // UUID 생성 세부로직 설정
     @PrePersist
     public void createId() {
         this.id = UuidCreator.getTimeOrdered();
+    }
+
+    @Override
+    public CommonUserProfile fromCreateDTO(CreateCommonUserProfileReqDTO createReqDTO) {
+        this.email = createReqDTO.getEmail();
+        this.password = createReqDTO.getPassword();
+        this.language = createReqDTO.getLanguage().toLocale();
+        this.username = createReqDTO.getUsername();
+        this.name = createReqDTO.getName();
+        this.country = createReqDTO.getCountry();
+        this.birth = createReqDTO.getBirth();
+        this.gender = createReqDTO.getGender();
+        this.phone = new UserPhone(
+                createReqDTO.getDefaultPhone(), createReqDTO.getMobilePhone(), createReqDTO.getLandlinePhone()
+        );
+        this.createdAt = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
+        this.scopes.clear();
+        this.scopes.addAll(createReqDTO.getScopes());
+        return this;
     }
 }

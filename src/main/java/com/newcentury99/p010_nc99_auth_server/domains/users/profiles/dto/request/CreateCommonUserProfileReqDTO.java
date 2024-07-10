@@ -26,6 +26,9 @@ public class CreateCommonUserProfileReqDTO implements CreateGeneralReqDTO {
     @Size(min = 2, max = 20, message = "valid.user.username.size")
     private String username;
 
+    @Size(min = 2, max = 20, message = "valid.user.name.size")
+    private String name;
+
     @Size(min = 1, max = 5, message = "valid.user.country.size")
     private String country;
 
@@ -35,8 +38,13 @@ public class CreateCommonUserProfileReqDTO implements CreateGeneralReqDTO {
     private UserGender gender;
 
     @Size(min = 9, max = 13, message = "valid.user.phone.size")
-    @Pattern(regexp = "(^02|^\\d{3})-(\\d{3}|\\d{4})-\\d{4}", message = "valid.user.phone.phone")
-    private String phone;
+    private String defaultPhone;
+
+    @Size(min = 9, max = 13, message = "valid.user.phone.size")
+    private String mobilePhone;
+
+    @Size(min = 8, max = 13, message = "valid.user.phone.size")
+    private String landlinePhone;
 
     @NotNull(message = "valid.user.scopes.null")
     private List<PermissionScope> scopes;
