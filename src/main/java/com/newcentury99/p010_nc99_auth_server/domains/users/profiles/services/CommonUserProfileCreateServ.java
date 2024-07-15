@@ -7,13 +7,13 @@ import com.newcentury99.p010_nc99_auth_server.domains.users.profiles.repository.
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class CommonUserProfileCreateServ implements GeneralEntityCreateServ<CommonUserProfile, CreateCommonUserProfileReqDTO> {
     private final CommonUserProfileRepo repo;
+//    private final StorageServ storageServ;
 
     @Override
     public CommonUserProfile create(CreateCommonUserProfileReqDTO reqDTO) {
@@ -24,10 +24,9 @@ public class CommonUserProfileCreateServ implements GeneralEntityCreateServ<Comm
 
     @Override
     public List<CommonUserProfile> creates(List<CreateCommonUserProfileReqDTO> reqDTOs) {
-        List<CommonUserProfile> newProfiles = new ArrayList<>();
-        for (CreateCommonUserProfileReqDTO reqDTO : reqDTOs) {
-            newProfiles.add(this.create(reqDTO));
-        }
+        List<CommonUserProfile> newProfiles = reqDTOs.stream().map(
+                dto -> new CommonUserProfile().fromCreateDTO(dto)
+        ).toList();
         return repo.saveAll(newProfiles);
     }
 

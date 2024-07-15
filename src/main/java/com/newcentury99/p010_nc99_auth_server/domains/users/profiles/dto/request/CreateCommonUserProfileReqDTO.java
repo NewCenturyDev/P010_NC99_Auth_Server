@@ -49,3 +49,5 @@ public class CreateCommonUserProfileReqDTO implements CreateGeneralReqDTO {
     @NotNull(message = "valid.user.scopes.null")
     private List<PermissionScope> scopes;
 }
+
+
