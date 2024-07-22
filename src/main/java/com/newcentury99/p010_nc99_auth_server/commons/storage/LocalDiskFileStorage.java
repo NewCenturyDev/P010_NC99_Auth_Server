@@ -31,7 +31,7 @@ public class LocalDiskFileStorage implements FileStorage {
             this.storageRootPath = new File(value).toPath();
             this.storage = Files.getFileStore(this.storageRootPath);
         } else {
-            this.storageRootPath = Path.of("/temp");
+            this.storageRootPath = Path.of(System.getProperty("java.io.tmpdir"), "testMicroService");
             this.storage = new MockFileStore(1024 * 1024 * 1024, 500 * 1024 * 1024);
         }
     }
